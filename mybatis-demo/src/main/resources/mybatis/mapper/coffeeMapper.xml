@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.mybatisdemo.mapper.CoffeeMapper" >
+    <resultMap id="resultMap" type="com.example.mybatisdemo.model.Coffee">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="price" column="price"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
     <insert id="save" parameterType="com.example.mybatisdemo.model.Coffee">
         insert into t_coffee(name,price)
         values(#{name},#{price,jdbcType=BIGINT})
     </insert>
+    <sql id="column">
+        id,name,price,create_time,update_time
+    </sql>
+    <select id="findAll" resultMap="resultMap">
+        select <include refid="column"/>
+        from t_coffee
+    </select>
 </mapper>

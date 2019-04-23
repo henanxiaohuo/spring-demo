@@ -2,8 +2,9 @@ package com.example.mybatisdemo.mapper;
 
 import com.example.mybatisdemo.model.Coffee;
 
-//@Mapper
+import java.util.List;
+
 public interface CoffeeMapper {
-//    @Insert("insert into t_coffee(name,price) values(#{name},#{price})")
     int save(Coffee coffee);
+    List<Coffee> findAll();
 }
